@@ -1,11 +1,6 @@
 # compiled output
 /dist
-node_modules/
 /build
-
-frontend/*/node_modules/
-api/*/node_modules/
-
 
 # Logs
 logs
@@ -59,10 +54,7 @@ pids
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
-/node_modules
 /.pnp
 .pnp.js
 .yarn/install-state.gz
@@ -95,5 +87,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-.DS_Store
