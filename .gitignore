@@ -146,4 +146,5 @@ dist/
 
 # Other
 *.log
+*.DS_Store
 
