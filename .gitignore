@@ -3,6 +3,10 @@
 /node_modules
 /build
 
+frontend/*/node_modules/
+api/*/node_modules/
+
+
 # Logs
 logs
 *.log
