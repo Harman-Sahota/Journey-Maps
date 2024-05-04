@@ -10,9 +10,9 @@ import { ModeToggle } from "./darkmode";
 
 export default function Navbar() {
     return (
-        <div className="flex justify-between items-center w-full mt-6 px-6">
+        <div className="flex justify-between items-center w-full mt-4 px-6">
             <h1 className="text-lg font-bold">Journey Maps</h1>
-            <Menubar>
+            <Menubar className="border-none">
                 <MenubarMenu>
                     <MenubarTrigger>Home</MenubarTrigger>
                 </MenubarMenu>
@@ -28,7 +28,9 @@ export default function Navbar() {
                     <MenubarTrigger>Contact Us</MenubarTrigger>
                 </MenubarMenu>
             </Menubar>
+            {/* <div className="absolute ml-auto"> */}
             <ModeToggle />
+            {/* </div> */}
         </div>
     );
 }
