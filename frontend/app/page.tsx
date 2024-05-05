@@ -1,11 +1,9 @@
-import Navbar from "@/components/ui/navbar";
 import { Button } from "@/components/ui/button";
-
+import Image from "next/image";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar />
         <div className="flex-grow flex justify-start items-center">
           <div className="max-w-xl ml-12">
             <p className="text-sm text-gray-600 dark:text-gray-300">More Than A Journal</p>
@@ -17,7 +15,7 @@ export default function Home() {
             </p>
             <Button className="mt-4 rounded dark:text-white">Get Started</Button>
           </div>
-          <img src="./paths.png" className="hidden md:block w-5/12 rounded h-auto ml-24 border-spacing-4 stroke-slate-700 p-4" alt="Paths Image"></img>
+          <Image src="/paths.png" width={200} height={200} className="hidden md:block w-5/12 rounded h-auto ml-24 border-spacing-4 stroke-slate-700 p-4" alt="Paths Image"></Image>
         </div>
     </div>
   );
