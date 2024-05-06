@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card"
 
 
+
 const values = [
   {
     title: "Resilience",
@@ -39,7 +40,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <div className="flex-grow flex justify-start items-center">
-        <div className="max-w-xl ml-12">
+        <div className="max-w-xl ml-12 mt-32 md:mt-0 lg:mt-0">
           <p className="text-sm text-gray-600 dark:text-gray-300">More Than A Journal</p>
           <h1 className="text-5xl font-bold mt-4">YOUR TIMELINE TO OVERCOME LIFE PROBLEMS</h1>
           <p className="mt-4 text-lg text-gray-800 dark:text-gray-500">
