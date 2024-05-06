@@ -18,7 +18,7 @@ import { ModeToggle } from "./darkmode"
 const components: { title: string; href: string; }[] = [
     {
         title: "Values",
-        href: "#"
+        href: "#values"
     },
     {
         title: "How It Works",
@@ -35,13 +35,23 @@ const components: { title: string; href: string; }[] = [
 ]
 
 export default function NavigationMenuDemo() {
+
+    const handleSmoothScroll = (event: React.MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault();
+        const targetId = event.currentTarget.getAttribute("href");
+        const targetElement = targetId ? document.querySelector(targetId) : null;
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <div className="flex justify-between items-center w-full mt-4 px-6">
             <h1 className="text-lg font-bold">Journey Maps</h1>
             <NavigationMenu>
                 <NavigationMenuList>
                     <NavigationMenuItem>
-                        <Link href="/docs" legacyBehavior passHref>
+                        <Link href="/" legacyBehavior passHref>
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                 Home
                             </NavigationMenuLink>
@@ -56,6 +66,7 @@ export default function NavigationMenuDemo() {
                                         key={component.title}
                                         title={component.title}
                                         href={component.href}
+                                        onClick={handleSmoothScroll}
                                     >
                                     </ListItem>
                                 ))}
@@ -63,7 +74,7 @@ export default function NavigationMenuDemo() {
                         </NavigationMenuContent>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <Link href="/docs" legacyBehavior passHref>
+                        <Link href="#" legacyBehavior passHref>
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                 Contact Us
                             </NavigationMenuLink>

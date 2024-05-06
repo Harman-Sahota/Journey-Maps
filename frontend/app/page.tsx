@@ -10,8 +10,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-
-
 const values = [
   {
     title: "Resilience",
@@ -54,7 +52,7 @@ export default function Home() {
         <Image src="/paths.png" width={250} height={250} className="hidden md:block w-5/12 rounded h-auto ml-24 border-spacing-4 stroke-slate-700 p-4" alt="People walking on a multiple crosswalk road"></Image>
       </div>
 
-      <h2 className="text-4xl mt-32 ml-5 text-center font-bold">Values: What Is Our Product Built On</h2>
+      <h2 className="text-4xl mt-32 ml-5 text-center font-bold" id="values">Values: What Is Our Product Built On</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5 p-6">
         {values.map((value, index) => (
@@ -70,8 +68,8 @@ export default function Home() {
             </CardHeader>
           </Card>
         ))}
-      </div>
 
+      </div>
     </div>
   );
 }
