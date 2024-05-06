@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/menubar";
 import { ChevronDown } from "lucide-react";
 import { ModeToggle } from "./darkmode";
+import { Button } from "./button";
 
 export default function Navbar() {
     return (
@@ -22,15 +23,14 @@ export default function Navbar() {
                         <MenubarItem>Values</MenubarItem>
                         <MenubarItem>How It Works</MenubarItem>
                         <MenubarItem>Documentation</MenubarItem>
+                        <MenubarItem>FAQ</MenubarItem>
                     </MenubarContent>
                 </MenubarMenu>
                 <MenubarMenu>
                     <MenubarTrigger>Contact Us</MenubarTrigger>
                 </MenubarMenu>
             </Menubar>
-            {/* <div className="absolute ml-auto"> */}
             <ModeToggle />
-            {/* </div> */}
         </div>
     );
 }
