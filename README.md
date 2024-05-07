@@ -1,5 +1,7 @@
 # Journey Maps
 
+Last Updated: May 7 2024
+
 ## Overview
 
 Journey Maps is a groundbreaking mental health platform designed to provide users with comprehensive tools for self-discovery, community support, and personalized guidance. Our mission is to empower individuals on their mental health journey by offering a range of features tailored to their needs.
