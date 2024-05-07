@@ -26,7 +26,7 @@ const components: { title: string; href: string; }[] = [
     },
     {
         title: "Documentation",
-        href: "#"
+        href: "https://github.com/Harman-Sahota/Journey-Maps/blob/main/README.md"
     },
     {
         title: "FAQ",
@@ -39,11 +39,18 @@ export default function NavigationMenuDemo() {
     const handleSmoothScroll = (event: React.MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
         const targetId = event.currentTarget.getAttribute("href");
-        const targetElement = targetId ? document.querySelector(targetId) : null;
-        if (targetElement) {
+        if (!targetId) return; // Exit if no targetId is found
+    
+        const isInternalLink = targetId.startsWith("#");
+        const targetElement = isInternalLink ? document.querySelector(targetId) : null;
+        if (targetElement && isInternalLink) {
             targetElement.scrollIntoView({ behavior: "smooth" });
+        } else if (!isInternalLink && targetId) {
+            window.location.href = targetId; // Navigate to external URL
         }
     };
+    
+    
 
     return (
         <div className="flex justify-between items-center w-full mt-4 px-6">
