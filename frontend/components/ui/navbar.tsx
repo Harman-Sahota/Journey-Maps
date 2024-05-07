@@ -30,7 +30,7 @@ const components: { title: string; href: string; }[] = [
     },
     {
         title: "FAQ",
-        href: "#"
+        href: "#faq"
     },
 ]
 

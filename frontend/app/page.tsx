@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import LeftRight from "@/components/ui/leftright";
+import Faq from "@/components/ui/faq";
 
 const values = [
   {
@@ -78,6 +79,12 @@ export default function Home() {
       </h3>
 
       <LeftRight />
+
+      <h2 className="text-4xl mt-32 ml-5 text-center font-bold" id="faq">FAQ: Questions You Might Have</h2>
+
+      <div className="mt-10">
+        <Faq/>
+      </div>
 
     </div>
   );
