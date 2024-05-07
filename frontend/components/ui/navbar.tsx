@@ -22,7 +22,7 @@ const components: { title: string; href: string; }[] = [
     },
     {
         title: "How It Works",
-        href: "#"
+        href: "#howitworks"
     },
     {
         title: "Documentation",
