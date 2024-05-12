@@ -77,7 +77,7 @@ export default function Home() {
       {/* How It Works Section */}
       <h2 className="text-4xl mt-20 text-center font-bold" id="howitworks">How It Works</h2>
       <h3 className="text-center text-xl mt-4 ml-5 text-muted-foreground">
-        Our Product is currently under development, but here's a glimpse of its functionality!
+        Our Product is currently under development, but here&apos;s a glimpse of its functionality!
       </h3>
 
       <LeftRight />

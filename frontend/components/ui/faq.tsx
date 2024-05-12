@@ -23,7 +23,7 @@ export default function Faq() {
             <AccordionItem value="How will user data be protected and anonymized?">
                 <AccordionTrigger>How will user data be protected and anonymized?</AccordionTrigger>
                 <AccordionContent>
-                    User data will be protected through industry-standard encryption protocols to ensure its security. Additionally, all data shared within the app will be anonymized, meaning that users' identities will never be revealed when data is collected for analysis or community matching purposes. This will ensure the privacy and confidentiality of users' information.
+                    User data will be protected through industry-standard encryption protocols to ensure its security. Additionally, all data shared within the app will be anonymized, meaning that users identities will never be revealed when data is collected for analysis or community matching purposes. This will ensure the privacy and confidentiality of users information.
                 </AccordionContent>
             </AccordionItem>
             {/* Add more common questions and answers here */}

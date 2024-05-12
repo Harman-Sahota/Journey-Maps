@@ -48,7 +48,7 @@ export default function Alert() {
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter className="mt-4">
-                        <AlertDialogCancel className="mr-2 rounded py-1 px-3  transition duration-200" onClick={handleCancel}>I'll just browse</AlertDialogCancel>
+                        <AlertDialogCancel className="mr-2 rounded py-1 px-3  transition duration-200" onClick={handleCancel}>I&apos;ll just browse</AlertDialogCancel>
                         <AlertDialogAction className="border rounded py-1 px-3 dark:text-white transition duration-200" onClick={handleContinue}>Sign Up for Waitlist</AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
