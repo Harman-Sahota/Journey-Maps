@@ -8,6 +8,7 @@ import { Button } from './button';
 import { Textarea } from "@/components/ui/textarea"
 import emailjs from 'emailjs-com';
 
+
 const formSchema = z.object({
     firstName: z.string().min(1, {
         message: "First Name Cannot Be Empty",
@@ -25,6 +26,7 @@ const formSchema = z.object({
 })
 
 export default function ContactForm() {
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -39,8 +41,8 @@ export default function ContactForm() {
         try {
             // Send email to yourself
             await emailjs.send(
-                process.env.SERVICE_ID_EMAILJS!,
-                process.env.ADMIN_TEMPLATE_ID!,
+                process.env.NEXT_PUBLIC_SERVICE_ID_EMAILJS!,
+                process.env.NEXT_PUBLIC_ADMIN_TEMPLATE_ID!,
                 {
                     to_email: '10harmansahota@gmail.com',
                     to_name: 'Harman',
@@ -51,13 +53,13 @@ export default function ContactForm() {
                     message: values.message,
                     reply_to: values.email
                 },
-                process.env.PUBLIC_KEY_EMAILJS!
+                process.env.NEXT_PUBLIC_PUBLIC_KEY_EMAILJS!
             );
 
             // Send email to the user
             await emailjs.send(
-                process.env.SERVICE_ID_EMAILJS!,
-                process.env.USER_TEMPLATE_ID!,
+                process.env.NEXT_PUBLIC_SERVICE_ID_EMAILJS!,
+                process.env.NEXT_PUBLIC_USER_TEMPLATE_ID!,
                 {
                     to_email: values.email,
                     to_name: values.firstName,
@@ -68,11 +70,16 @@ export default function ContactForm() {
                     message: values.message,
                     reply_to: values.email
                 },
-                process.env.PUBLIC_KEY_EMAILJS!
+                process.env.NEXT_PUBLIC_PUBLIC_KEY_EMAILJS!
             );
 
             console.log('Emails sent successfully');
         } catch (error) {
+            console.log({
+                serviceId: process.env.SERVICE_ID_EMAILJS!,
+                templateId: process.env.ADMIN_TEMPLATE_ID!,
+                publickey: process.env.PUBLIC_KEY_EMAILJS!
+            })
             console.error('Error sending emails:', error);
         }
     }

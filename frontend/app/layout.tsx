@@ -3,6 +3,7 @@ import { Inter as FontSans } from "next/font/google"
 import "./globals.css";
 import Navbar from "@/components/ui/navbar";
 
+
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import Footer from "@/components/ui/Footer";
