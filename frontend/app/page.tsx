@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Heart, Users, MessageCircle, Smile, AlertTriangle } from 'lucide-react';
+import { Shield, Users, MessageCircle, Smile, AlertTriangle } from 'lucide-react';
 import {
   Card,
   CardDescription,
@@ -17,7 +17,7 @@ const values = [
   {
     title: "Resilience",
     description: "Find strength in knowing that someone has been where you are and made it through.",
-    icon: <Heart size={32} />,
+    icon: <Shield size={32} />,
   },
   {
     title: "Acceptance",
