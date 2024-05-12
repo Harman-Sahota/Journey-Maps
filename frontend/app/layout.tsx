@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/sonner"
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import Footer from "@/components/ui/Footer";
+import { Analytics } from "@vercel/analytics/react"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -40,7 +41,7 @@ export default function RootLayout({
           <Footer />
 
         </ThemeProvider>
-
+        <Analytics />
       </body>
     </html >
   );
