@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from './button';
 import { Textarea } from "@/components/ui/textarea"
 import emailjs from 'emailjs-com';
-
+import { toast } from "sonner";
 
 const formSchema = z.object({
     firstName: z.string().min(1, {
@@ -73,13 +73,18 @@ export default function ContactForm() {
                 process.env.NEXT_PUBLIC_PUBLIC_KEY_EMAILJS!
             );
 
-            console.log('Emails sent successfully');
-        } catch (error) {
-            console.log({
-                serviceId: process.env.SERVICE_ID_EMAILJS!,
-                templateId: process.env.ADMIN_TEMPLATE_ID!,
-                publickey: process.env.PUBLIC_KEY_EMAILJS!
+            form.reset();
+
+            toast("Form Data Successfully Sent", {
+                description: "We will get back to you soon!",
+                action: {
+                    label: "Done",
+                    onClick: () => {},
+                },
             })
+
+
+        } catch (error) {
             console.error('Error sending emails:', error);
         }
     }
@@ -123,7 +128,7 @@ export default function ContactForm() {
                         <FormMessage />
                     </FormItem>
                 }} />
-                <Button type='submit' className='rounded w-full flex items-center justify-center mx-auto dark:text-white'>Submit</Button>
+                <Button className='rounded w-full flex items-center justify-center mx-auto dark:text-white'>Submit</Button>
             </form>
         </Form>
     );
