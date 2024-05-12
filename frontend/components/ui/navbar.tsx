@@ -81,8 +81,8 @@ export default function NavigationMenuDemo() {
                         </NavigationMenuContent>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <Link href="#" legacyBehavior passHref>
-                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                        <Link href="#contactus" legacyBehavior passHref >
+                            <NavigationMenuLink  onClick={handleSmoothScroll}  className={navigationMenuTriggerStyle()}>
                                 Contact Us
                             </NavigationMenuLink>
                         </Link>

@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card"
 import LeftRight from "@/components/ui/leftright";
 import Faq from "@/components/ui/faq";
+import ContactForm from "@/components/ui/contactForm";
 
 const values = [
   {
@@ -41,7 +42,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen p-11">
       <div className="flex-grow flex justify-start items-center">
         <div className="max-w-xl ml-12 mt-32 md:mt-0 lg:mt-0">
-          <p className="text-sm text-gray-600 dark:text-gray-300">More Than A Journal</p>
+          <p className="text-sm text-gray-600 dark:text-gray-300">More Than Just A Journal: <span className="font-semibold text-sky-600">Gamify overcoming Life Problems</span></p>
           <h1 className="text-5xl font-bold mt-4">YOUR TIMELINE TO OVERCOME LIFE PROBLEMS</h1>
           <p className="mt-4 text-lg text-gray-800 dark:text-gray-500">
             Empower yourself with our innovative mental health journaling and community platform.
@@ -54,6 +55,7 @@ export default function Home() {
         <Image src="/paths.png" width={250} height={250} className="hidden md:block w-5/12 rounded h-auto ml-24 border-spacing-4 stroke-slate-700 p-4" alt="People walking on a multiple crosswalk road"></Image>
       </div>
 
+      {/* Values Section */}
       <h2 className="text-4xl mt-32 ml-5 text-center font-bold" id="values">Values: What Is Our Product Built On</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5 p-6">
@@ -72,7 +74,7 @@ export default function Home() {
         ))}
 
       </div>
-
+      {/* How It Works Section */}
       <h2 className="text-4xl mt-20 text-center font-bold" id="howitworks">How It Works</h2>
       <h3 className="text-center text-xl mt-4 ml-5 text-muted-foreground">
         Our Product is currently under development, but here's a glimpse of its functionality!
@@ -80,10 +82,16 @@ export default function Home() {
 
       <LeftRight />
 
+      {/* Faq Section */}
       <h2 className="text-4xl mt-32 ml-5 text-center font-bold" id="faq">FAQ: Questions You Might Have</h2>
-
       <div className="mt-10">
-        <Faq/>
+        <Faq />
+      </div>
+
+      {/* Contact Us Section */}
+      <div className="mt-10 border rounded p-6 w-full md:w-3/4 sm:w-96 flex flex-col justify-center items-center mx-auto" id="contactus">
+        <h2 className="text-4xl p-4 text-center font-bold">Got Any More Questions?</h2>
+        <ContactForm />
       </div>
 
     </div>
