@@ -12,6 +12,10 @@ import {
 import LeftRight from "@/components/ui/leftright";
 import Faq from "@/components/ui/faq";
 import ContactForm from "@/components/ui/contactForm";
+import Link from "next/link";
+import Navbar from "@/components/ui/navbar";
+import { Input } from "@/components/ui/input";
+import Waitlist from "@/components/ui/waitlist";
 
 const values = [
   {
@@ -39,7 +43,8 @@ const values = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen p-11">
+    <div className="flex flex-col min-h-screen">
+       <Navbar />
       <div className="flex-grow flex justify-start items-center">
         <div className="max-w-xl ml-12 mt-32 md:mt-0 lg:mt-0">
           <p className="text-sm text-gray-600 dark:text-gray-300">More Than Just A Journal: <span className="font-semibold text-sky-600">Gamify overcoming Life Problems</span></p>
@@ -49,7 +54,9 @@ export default function Home() {
             Document your journey, connect with others, and find guidance from shared experiences.
             Join a supportive community where your voice is heard.
           </p>
-          <Button className="mt-4 rounded dark:text-white">Get Started</Button>
+          <Link href="/Waitlist">
+              <Button className="mt-4 rounded dark:text-white">Get Started</Button>
+          </Link>
 
         </div>
         <Image src="/paths.png" width={250} height={250} className="hidden md:block w-5/12 rounded h-auto ml-24 border-spacing-4 stroke-slate-700 p-4" alt="People walking on a multiple crosswalk road"></Image>
@@ -94,6 +101,9 @@ export default function Home() {
         <ContactForm />
       </div>
 
+      <h2 className="mt-10 text-2xl p-4 text-center font-bold">Join the Waitlist</h2>
+      <p className="text-muted-foreground text-center">Enter your email to get early access to our new product and exclusive benefits.</p>
+      <Waitlist />
     </div>
   );
 }
