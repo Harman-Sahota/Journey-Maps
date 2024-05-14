@@ -54,7 +54,7 @@ export default function NavigationMenuDemo() {
 
     return (
         <div className="flex justify-between items-center w-full mt-4 px-6">
-            <h1 className="text-lg font-bold">Journey Maps</h1>
+            <h1 className="text-sm md:text-lg font-bold">Journey Maps</h1>
             <NavigationMenu>
                 <NavigationMenuList>
                     <NavigationMenuItem>
