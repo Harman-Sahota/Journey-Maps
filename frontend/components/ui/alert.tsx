@@ -1,5 +1,5 @@
 "use client"
-import { useRef, useState } from 'react';
+import {  useState } from 'react';
 import { Button } from "@/components/ui/button";
 import {
     AlertDialog,
@@ -17,7 +17,7 @@ export default function Alert() {
 
 
     const handleGetStartedClick = () => {
-        setIsOpen(true); // Open the alert dialog
+        setIsOpen(true); 
     };
 
     const handleContinue = () => {
