@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Shield, Users, MessageCircle, Smile, AlertTriangle } from 'lucide-react';
 import {
   Card,
@@ -12,6 +11,8 @@ import ContactForm from "@/components/ui/contactForm";
 import Navbar from "@/components/ui/navbar";
 import Waitlist from "@/components/ui/waitlist";
 import Alert from "@/components/ui/alert";
+import { HeadImage } from "@/components/ui/ImageSkeletons";
+
 
 const values = [
   {
@@ -52,7 +53,7 @@ export default function Home() {
           </p>
           <Alert />
         </div>
-        <Image src="/paths.png" width={250} height={250} className="hidden md:block w-5/12 rounded h-auto ml-24 border-spacing-4 stroke-slate-700 p-4" alt="People walking on a multiple crosswalk road"></Image>
+       <HeadImage></HeadImage>
       </div>
 
       {/* Values Section */}
