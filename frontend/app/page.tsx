@@ -44,16 +44,16 @@ export default function Home() {
       <Navbar />
       <div className="flex-grow flex justify-start items-center">
         <div className="max-w-xl ml-12 mt-32 md:mt-0 lg:mt-0">
-          <p className="text-sm text-gray-600 dark:text-gray-300">More Than Just A Journal: <span className="font-semibold text-sky-600">Gamify overcoming Life Problems</span></p>
+          <p className="text-sm text-gray-600 dark:text-gray-200">More Than Just A Journal: <span className="font-semibold text-sky-600">Gamify overcoming Life Problems</span></p>
           <h1 className="text-5xl font-bold mt-4">YOUR TIMELINE TO OVERCOME LIFE PROBLEMS</h1>
-          <p className="mt-4 text-lg text-gray-800 dark:text-gray-500">
+          <p className="mt-4 text-lg text-muted-foreground">
             Empower yourself with our innovative mental health journaling and community platform.
             Document your journey, connect with others, and find guidance from shared experiences.
             Join a supportive community where your voice is heard.
           </p>
           <Alert />
         </div>
-       <HeadImage></HeadImage>
+        <HeadImage></HeadImage>
       </div>
 
       {/* Values Section */}
@@ -69,7 +69,7 @@ export default function Home() {
                   <CardTitle className="text-md">{value.title}</CardTitle>
                 </div>
               </div>
-              <CardDescription className="mt-6">{value.description}</CardDescription>
+              <CardDescription className="mt-6 text-muted-foreground">{value.description}</CardDescription>
             </CardHeader>
           </Card>
         ))}

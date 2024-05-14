@@ -43,7 +43,7 @@ export default function Alert() {
                 <AlertDialogContent className="rounded-xl p-4">
                     <AlertDialogHeader className="mb-2">
                         <AlertDialogTitle className="text-lg font-bold">Our Product Is Currently in Development</AlertDialogTitle>
-                        <AlertDialogDescription className="text-sm">
+                        <AlertDialogDescription className="text-sm text-muted-foreground">
                             You can still sign up to our waitlist and get early access.
                         </AlertDialogDescription>
                     </AlertDialogHeader>

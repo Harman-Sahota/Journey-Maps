@@ -40,7 +40,7 @@ export default function NavigationMenuDemo() {
         event.preventDefault();
         const targetId = event.currentTarget.getAttribute("href");
         if (!targetId) return; // Exit if no targetId is found
-    
+
         const isInternalLink = targetId.startsWith("#");
         const targetElement = isInternalLink ? document.querySelector(targetId) : null;
         if (targetElement && isInternalLink) {
@@ -49,8 +49,8 @@ export default function NavigationMenuDemo() {
             window.location.href = targetId; // Navigate to external URL
         }
     };
-    
-    
+
+
 
     return (
         <div className="flex justify-between items-center w-full mt-4 px-6">
@@ -82,7 +82,7 @@ export default function NavigationMenuDemo() {
                     </NavigationMenuItem>
                     <NavigationMenuItem>
                         <Link href="#contactus" legacyBehavior passHref >
-                            <NavigationMenuLink  onClick={handleSmoothScroll}  className={navigationMenuTriggerStyle()}>
+                            <NavigationMenuLink onClick={handleSmoothScroll} className={navigationMenuTriggerStyle()}>
                                 Contact Us
                             </NavigationMenuLink>
                         </Link>
