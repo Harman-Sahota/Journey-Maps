@@ -2,12 +2,16 @@ import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { DatabaseModule } from 'src/database/database.module';
-import { DiscordStrategy } from './discord.strategy';
 import { PassportModule } from '@nestjs/passport';
+import { DiscordStrategy } from './strategies';
 
 @Module({
-  imports: [DatabaseModule, PassportModule],
+  imports: [DatabaseModule, PassportModule.register({ session: true })],
   controllers: [AuthController],
-  providers: [AuthService, DiscordStrategy],
+  providers: [DiscordStrategy, {
+    provide: "AUTH_SERVICE",
+    useClass: AuthService
+  },
+  ],
 })
-export class AuthModule {}
+export class AuthModule { }

@@ -1,89 +1,30 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Prisma, User } from '@prisma/client'; // Import Prisma and User
 import { DatabaseService } from 'src/database/database.service';
 import axios from 'axios';
+import { AuthenticationProvider } from './auth';
+import { UserDetails } from 'src/utils/types';
 
 @Injectable()
-export class AuthService {
-  private readonly logger = new Logger(AuthService.name);
+export class AuthService implements AuthenticationProvider {
+  constructor(private readonly databaseService: DatabaseService, private readonly prisma: PrismaClient) { }
 
-  constructor(private readonly databaseService: DatabaseService) { }
-
-  async createOrUpdateUser(user: any) {
+  async validateUser(details: UserDetails): Promise<User | null> {
     try {
-      const existingUser = await this.databaseService.user.findUnique({
-        where: { discordId: user.discordId },
-      });
-
-      if (existingUser) {
-        return this.databaseService.user.update({
-          where: { discordId: user.discordId },
-          data: user,
-        });
-      }
-
-      return this.databaseService.user.create({
-        data: user,
-      });
+      const user = await this.prisma.user.findUnique({ where: { discordId: details.discordId } });
+      return user;
     } catch (error) {
-      this.logger.error('Error creating/updating user', error);
-      throw error;
+      // Handle error (e.g., logging)
+      console.error('Error validating user:', error);
+      return null;
     }
   }
 
-  async refreshToken(userId: number) {
-    try {
-      const user = await this.databaseService.user.findUnique({ where: { id: userId } });
-
-      if (!user || !user.refreshToken) {
-        throw new Error('User or refresh token not found');
-      }
-
-      const response = await axios.post('https://discord.com/api/oauth2/token', null, {
-        params: {
-          client_id: process.env.DISCORD_CLIENT_ID,
-          client_secret: process.env.DISCORD_CLIENT_SECRET,
-          grant_type: 'refresh_token',
-          refresh_token: user.refreshToken,
-        },
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      });
-
-      const { access_token, refresh_token } = response.data;
-
-      await this.databaseService.user.update({
-        where: { id: userId },
-        data: {
-          accessToken: access_token,
-          refreshToken: refresh_token,
-        },
-      });
-
-      return {
-        accessToken: access_token,
-        refreshToken: refresh_token,
-      };
-    } catch (error) {
-      this.logger.error('Error refreshing token', error);
-      throw error;
-    }
+  createUser() {
+    throw new Error('Method not implemented.');
   }
 
-  async findAll() {
-    return `This action returns all auth`;
-  }
-
-  async findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
-
-  async update(id: number, updateAuthDto: Prisma.UserUpdateInput) {
-    return `This action updates a #${id} auth`;
-  }
-
-  async remove(id: number) {
-    return `This action removes a #${id} auth`;
+  findUser() {
+    throw new Error('Method not implemented.');
   }
 }
