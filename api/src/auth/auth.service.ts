@@ -1,6 +1,7 @@
 import { HttpStatus, Injectable, Res } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database.service';
 import { Response } from 'express';
+import { randomBytes } from 'crypto';
 @Injectable()
 export class AuthService {
     constructor(private prisma: DatabaseService) { }
@@ -63,12 +64,15 @@ export class AuthService {
                 },
             });
 
-            res.redirect('http://localhost:3000');
+            const sessionToken = randomBytes(32).toString('hex');
+
+            res.cookie('session', sessionToken, { maxAge: 86400000, httpOnly: true });
+
+            res.redirect(`http://localhost:3000?sessionToken=${sessionToken}&name=${savedUser.name}&email=${savedUser.email}&avatar=${savedUser.avatar}`);
 
             return {
                 statusCode: HttpStatus.CREATED,
-                data: savedUser,
-                headers: { Location: 'http://localhost:3000' }
+                headers: { Location: `http://localhost:3000?sessionToken=${sessionToken}&name=${savedUser.name}&email=${savedUser.email}&avatar=${savedUser.avatar}` }
             };
         } catch (error) {
             console.error('Error handling Discord callback:', error);
