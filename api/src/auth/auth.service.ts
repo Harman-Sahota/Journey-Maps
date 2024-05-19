@@ -2,6 +2,8 @@ import { HttpStatus, Injectable, Res } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database.service';
 import { Response } from 'express';
 import { randomBytes } from 'crypto';
+import axios from 'axios';
+
 @Injectable()
 export class AuthService {
     constructor(private prisma: DatabaseService) { }
@@ -61,22 +63,69 @@ export class AuthService {
                     accessToken: discordData.access_token,
                     refreshToken: discordData.refresh_token,
                     avatar: userData.avatar,
+                    color: userData.banner_color
                 },
+            });
+
+            const User = await this.prisma.user.findUnique({
+                where: { discordId: userData.id },
             });
 
             const sessionToken = randomBytes(32).toString('hex');
 
             res.cookie('session', sessionToken, { maxAge: 86400000, httpOnly: true });
 
-            res.redirect(`http://localhost:3000?sessionToken=${sessionToken}&name=${savedUser.name}&email=${savedUser.email}&avatar=${savedUser.avatar}`);
+            const colorEncoded = encodeURIComponent(User.color ?? userData.banner_color);
+
+            res.redirect(`http://localhost:3000/dashboard?sessionToken=${sessionToken}&name=${savedUser.name}&email=${savedUser.email}&avatar=${savedUser.avatar}&discordID=${savedUser.discordId}&color=${colorEncoded}`);
 
             return {
                 statusCode: HttpStatus.CREATED,
-                headers: { Location: `http://localhost:3000?sessionToken=${sessionToken}&name=${savedUser.name}&email=${savedUser.email}&avatar=${savedUser.avatar}` }
+                headers: { Location: `http://localhost:3000/dashboard?sessionToken=${sessionToken}&name=${savedUser.name}&email=${savedUser.email}&avatar=${savedUser.avatar}&discordID=${savedUser.discordId}&color=${colorEncoded}` }
             };
         } catch (error) {
             console.error('Error handling Discord callback:', error);
             throw error;
         }
+    }
+
+    async revokeToken(discordID: string): Promise<void> {
+        try {
+            const user = await this.prisma.user.findUnique({
+                where: { discordId: discordID },
+            });
+
+            if (!user) {
+                throw new Error('User not found');
+            }
+
+            const data = new URLSearchParams({
+                'token': user.accessToken,
+                'token_type_hint': 'access_token'
+            }).toString();
+
+            const headers = {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': `Basic ${Buffer.from(`${process.env.DISCORD_CLIENT_ID}:${process.env.DISCORD_CLIENT_SECRET}`).toString('base64')}`
+            };
+
+            await axios.post('https://discord.com/api/v9/oauth2/token/revoke', data, { headers });
+        } catch (error) {
+            console.error('Error revoking access token:', error);
+            throw new Error('Failed to revoke access token');
+        }
+    }
+
+    async logoutUser(discordID: string): Promise<void> {
+        const user = await this.prisma.user.findUnique({
+            where: { discordId: discordID },
+        });
+
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        await this.revokeToken(discordID);
+
     }
 }
