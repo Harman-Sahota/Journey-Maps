@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from '@/components/ui/button';
 import axios from 'axios';
+import { toast } from "sonner";
 
 export default function Dashboard() {
     const [sessionToken, setSessionToken] = useState('');
@@ -63,9 +64,16 @@ export default function Dashboard() {
                 name: timelineTitle
             });
             fetchTimelines();
-            setTimelineTitle('');
             setLoading(false);
             setOpen(false);
+            toast("New Timeline Added", {
+                description: "You're stronger than you think. You'll get through this!",
+                action: {
+                    label: "Done",
+                    onClick: () => {},
+                },
+            })
+            setTimelineTitle('');
         } catch (error) {
             console.error('Error adding timeline:', error);
         }
