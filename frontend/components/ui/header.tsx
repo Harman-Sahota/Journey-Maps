@@ -1,5 +1,4 @@
-"use client"
-import { useEffect, useState, ChangeEvent } from 'react';
+import { useEffect, useState } from 'react';
 import {
     Avatar,
     AvatarFallback,
@@ -20,7 +19,7 @@ interface HeaderProps {
     userName?: string;
     avatar?: string;
     discordID?: string;
-    color?: string;
+    selectedTab?: string;
 }
 
 export default function Header({
@@ -28,47 +27,14 @@ export default function Header({
     userName,
     avatar,
     discordID,
-    color,
+    selectedTab
 }: HeaderProps) {
-    const [selectedColor, setSelectedColor] = useState(color || '#2563eb');
-    const [textColor, setTextColor] = useState<string>('text-slate-900');
-
-    const calculateLuminance = (hexColor: string) => {
-        const hex = hexColor.replace(/#/, '');
-        const r = parseInt(hex.substring(0, 2), 16) / 255;
-        const g = parseInt(hex.substring(2, 4), 16) / 255;
-        const b = parseInt(hex.substring(4, 6), 16) / 255;
-        return 0.2126 * r + 0.7152 * g + 0.0722 * b; // Relative luminance
-    };
-
-    if (sessionToken) {
-        localStorage.setItem("sessionToken", sessionToken);
-    }
-    useEffect(() => {
-        setSelectedColor(color || '#2563eb');
-    }, [color]);
 
     useEffect(() => {
-        const luminance = calculateLuminance(selectedColor);
-        console.log(luminance); 
-        setTextColor(luminance > 0.4 ? 'text-slate-900' : 'text-slate-50');
-    }, [selectedColor]);
-
-
-    const handleColorChange = async (event: ChangeEvent<HTMLInputElement>) => {
-        setSelectedColor(event.target.value);
-        try {
-            await axios.put('http://localhost:8000/api/user/updateColor', { discordID: discordID, color: event.target.value });
-        } catch (error) {
-            console.error('Error sending color to backend:', error);
+        if (sessionToken) {
+            localStorage.setItem("sessionToken", sessionToken);
         }
-    };
-
-    const handleColorPickerClick = (
-        event: React.MouseEvent<HTMLInputElement, MouseEvent>
-    ) => {
-        event.stopPropagation();
-    };
+    }, [sessionToken]);
 
     const handleLogout = async () => {
         try {
@@ -81,11 +47,7 @@ export default function Header({
     };
 
     return (
-        <div className="flex justify-between items-center mb-4 p-4" style={{
-            background: `radial-gradient(circle, ${selectedColor} 20%, rgba(255, 255, 255, 0) 70%, transparent 90%)`
-        }}
-
-        >
+        <div className="flex justify-between items-center mb-4 p-4 bg-gradient-to-r from-blue-200 dark:from-blue-950 to-blue-100 dark:to-transparent">
             <div className="flex items-center space-x-4">
                 <DropdownMenu>
                     <DropdownMenuTrigger className="text-lg font-medium border rounded flex items-center p-2 border-gray-700 dark:border-gray-500">
@@ -99,26 +61,13 @@ export default function Header({
                         <div className="ml-2">{userName || ''}</div>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="rounded">
-                        <DropdownMenuItem className='rounded'>
-                            <label className='p-1 font-normal'>Current Color: </label>
-                            <input
-                                type="color"
-                                className="h-8 w-8 block cursor-pointer rounded disabled:opacity-50 disabled:pointer-events-none"
-                                id="hs-color-input"
-                                value={selectedColor}
-                                onChange={handleColorChange}
-                                onClick={handleColorPickerClick}
-                                title="Choose your color"
-                            />
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
                         <DropdownMenuItem className='rounded text-center' onClick={handleLogout}>
                             <h6 className='text-red-500 font-medium text-center'>Logout</h6>
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
-            <h1 className={`p-2 text-3xl font-bold text-center ${textColor}`}>Sample Timeline</h1>
+            <h1 className="text-3xl font-bold ml-auto mr-auto text-slate-900 dark:text-slate-200 text-center">{selectedTab || 'Sample Timeline'}</h1>
             <ModeToggle />
         </div>
     );

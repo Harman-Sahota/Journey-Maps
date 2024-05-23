@@ -23,6 +23,7 @@ export class AuthController {
     const result = await this.authService.handleDiscordCallback(code, res);
     return result
   }
+  
   @Post('logout')
   async logout(@Body('discordID') discordID: string, @Res() res: Response) {
     try {

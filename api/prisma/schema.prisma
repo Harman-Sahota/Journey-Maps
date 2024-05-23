@@ -19,22 +19,17 @@ model User {
   avatar        String?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-  color         String?
 
   timelines     Timeline[]
 }
 
 
 model Timeline {
-  id            Int      @id @default(autoincrement())
-  discordId     String
-  name          String
-  description   String?   // Optional description field
-  iconUrl       String?   // URL for the timeline icon
-  coverImageUrl String?   // URL for the cover image
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id        Int      @id @default(autoincrement())
+  discordId String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  user          User      @relation(fields: [discordId], references: [discordId])
-
+  user      User     @relation(fields: [discordId], references: [discordId])
 }

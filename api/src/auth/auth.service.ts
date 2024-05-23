@@ -63,7 +63,6 @@ export class AuthService {
                     accessToken: discordData.access_token,
                     refreshToken: discordData.refresh_token,
                     avatar: userData.avatar,
-                    color: userData.banner_color
                 },
             });
 
@@ -75,13 +74,11 @@ export class AuthService {
 
             res.cookie('session', sessionToken, { maxAge: 86400000, httpOnly: true });
 
-            const colorEncoded = encodeURIComponent(User.color ?? userData.banner_color);
-
-            res.redirect(`http://localhost:3000/dashboard?sessionToken=${sessionToken}&name=${savedUser.name}&email=${savedUser.email}&avatar=${savedUser.avatar}&discordID=${savedUser.discordId}&color=${colorEncoded}`);
+            res.redirect(`http://localhost:3000/dashboard?sessionToken=${sessionToken}&name=${savedUser.name}&email=${savedUser.email}&avatar=${savedUser.avatar}&discordID=${savedUser.discordId}`);
 
             return {
                 statusCode: HttpStatus.CREATED,
-                headers: { Location: `http://localhost:3000/dashboard?sessionToken=${sessionToken}&name=${savedUser.name}&email=${savedUser.email}&avatar=${savedUser.avatar}&discordID=${savedUser.discordId}&color=${colorEncoded}` }
+                headers: { Location: `http://localhost:3000/dashboard?sessionToken=${sessionToken}&name=${savedUser.name}&email=${savedUser.email}&avatar=${savedUser.avatar}&discordID=${savedUser.discordId}` }
             };
         } catch (error) {
             console.error('Error handling Discord callback:', error);

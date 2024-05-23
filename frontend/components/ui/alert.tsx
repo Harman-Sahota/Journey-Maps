@@ -3,7 +3,7 @@
     export default function Alert() {
 
         return (
-            <a href='https://journeymaps.life/api/auth/discord'>
+            <a href='http://localhost:8000/api/auth/discord'>
                 <Button className="mt-4 rounded dark:text-white">Get Started</Button>
             </a>
         );
